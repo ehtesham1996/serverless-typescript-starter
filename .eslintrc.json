@@ -1,0 +1,71 @@
+{
+  "extends": [
+    "airbnb-base",
+    "prettier",
+    "plugin:jest/all",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:import/typescript",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": ["jest", "@typescript-eslint"],
+  "root": true,
+  "globals": {},
+  "rules": {
+    "jest/no-hooks": "off",
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "@typescript-eslint/camelcase": [
+      "error",
+      {
+        "properties": "never"
+      }
+    ],
+    "semi": ["error", "always"],
+    "quotes" : ["error", "single", { "avoidEscape": true }],
+    "quote-props": ["error", "as-needed"],
+    "import/no-cycle": [2, { "ignoreExternal": true }],
+    "@typescript-eslint/no-explicit-any": 0,
+    "camelcase": "off",
+    "@typescript-eslint/indent": [2, 2],
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    "import/no-unresolved": [
+      2,
+      {
+        "commonjs": true,
+        "amd": true
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "jest/prefer-expect-assertions": "off",
+    "comma-dangle": ["error", "never"],
+    "import/extensions": "off",
+    "no-trailing-spaces": "error",
+    "max-len": [
+      "error",
+      {
+        "code": 150,
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "linebreak-style": 0
+  },
+  "parser": "@typescript-eslint/parser",
+  "env": {},
+  "overrides": [],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          ["@src", "./src"],
+          ["@tests", "./tests"]
+        ],
+        "extensions": [".ts", ".js"]
+      }
+    }
+  }
+}

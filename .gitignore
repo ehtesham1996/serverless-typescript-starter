@@ -1,0 +1,19 @@
+# package directories
+/node_modules/
+jspm_packages
+
+# Serverless directories
+.serverless
+
+# Webpack directories
+.webpack
+.eslintcache
+
+#Exlcuding env files
+.env*
+
+#Exluding jest coverage file
+/coverage/
+
+#Excluding webpack dist file
+/dist/

@@ -28,7 +28,7 @@ describe('database - delete item - helper function', () => {
   it('error - 400', async () => {
     AWS.mock('DynamoDB.DocumentClient', 'delete', async () => {
       // eslint-disable-next-line no-throw-literal
-      throw { code: 'ValidationException' }
+      throw { code: 'ValidationException' };
     });
     const params = {
       TableName: 'TEST_TABLE',
@@ -55,7 +55,7 @@ describe('database - delete item - helper function', () => {
     };
 
     await expect(async () => deleteItem(params)).rejects.toThrow(
-      `Oops! seems like we're having difficulties.Please try again later. ERR(DB-02)`
+      'Oops! seems like we\'re having difficulties.Please try again later. ERR(DB-02)'
     );
   });
 });

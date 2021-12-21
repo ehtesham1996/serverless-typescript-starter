@@ -13,7 +13,7 @@ describe('database - put item - helper function', () => {
 
   it('success - 200', async () => {
     AWS.mock('DynamoDB.DocumentClient', 'put', async (params: any) => {
-      expect(params).toStrictEqual({ "TableName": "TEST_TABLE", "Item": { "id": "1234567890-1", "hello": "world" } });
+      expect(params).toStrictEqual({ TableName: 'TEST_TABLE', Item: { id: '1234567890-1', hello: 'world' } });
     });
 
     const params = {
@@ -22,7 +22,7 @@ describe('database - put item - helper function', () => {
         id: '1234567890-1',
         hello: 'world'
       }
-    }
+    };
     await putItem(params);
   });
 
@@ -37,8 +37,8 @@ describe('database - put item - helper function', () => {
         id: '1234567890-1',
         hello: 'world'
       }
-    }
+    };
 
-    await expect(async () => putItem(params)).rejects.toThrow(`Oops! seems like we're having difficulties.Please try again later. ERR(DB-02)`);
+    await expect(async () => putItem(params)).rejects.toThrow('Oops! seems like we\'re having difficulties.Please try again later. ERR(DB-02)');
   });
 });

@@ -1,6 +1,6 @@
-# Certification Portal
+# Serverless Typescript Starter
 
-A portal to manage certification for EwsNetwork
+A Template to quickly start your serverless projects
 
 ### Install 
 

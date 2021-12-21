@@ -92,7 +92,7 @@ describe('database - query item - helper function', () => {
     };
 
     await expect(async () => queryItem(params)).rejects.toThrow(
-      `Oops! seems like we're having difficulties.Please try again later. ERR(DB-02)`
+      'Oops! seems like we\'re having difficulties.Please try again later. ERR(DB-02)'
     );
   });
 });

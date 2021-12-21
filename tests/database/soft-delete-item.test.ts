@@ -28,7 +28,7 @@ describe('database - soft delete item - helper function', () => {
       Key: {
         id: '1234567890-1'
       }
-    }
+    };
     await softDeleteItem(params);
   });
 
@@ -43,7 +43,7 @@ describe('database - soft delete item - helper function', () => {
       Key: {
         id: '1234567890-1'
       }
-    }
+    };
 
     await expect(async () => softDeleteItem(params)).rejects.toThrow('Unable to delete non existent item ERR(BR-01)');
   });
@@ -58,8 +58,8 @@ describe('database - soft delete item - helper function', () => {
       Key: {
         id: '1234567890-1'
       }
-    }
+    };
 
-    await expect(async () => softDeleteItem(params)).rejects.toThrow(`Oops! seems like we're having difficulties.Please try again later. ERR(DB-02)`);
+    await expect(async () => softDeleteItem(params)).rejects.toThrow('Oops! seems like we\'re having difficulties.Please try again later. ERR(DB-02)');
   });
 });

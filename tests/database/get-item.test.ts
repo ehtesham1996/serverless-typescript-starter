@@ -16,10 +16,10 @@ describe('database - get item - helper function', () => {
       expect(params).toStrictEqual({ TableName: 'TEST_TABLE', Key: { id: '1234567890-1' } });
       return {
         Item: {
-          id: "123456789-0",
-          field: "value1"
+          id: '123456789-0',
+          field: 'value1'
         }
-      }
+      };
     });
 
     const params = {
@@ -27,14 +27,14 @@ describe('database - get item - helper function', () => {
       Key: {
         id: '1234567890-1'
       }
-    }
+    };
     expect(await getItem(params)).toStrictEqual({ id: '123456789-0', field: 'value1' });
   });
 
   it('throw error when invalied item specified', async () => {
     AWS.mock('DynamoDB.DocumentClient', 'get', async (params: any) => {
       expect(params).toStrictEqual({ TableName: 'TEST_TABLE', Key: { id: '1234567890-1' } });
-      return {}
+      return {};
     });
 
     const params = {
@@ -42,7 +42,7 @@ describe('database - get item - helper function', () => {
       Key: {
         id: '1234567890-1'
       }
-    }
+    };
     await expect(async () => getItem(params)).rejects.toThrow('Invalid item specified to be fetched. ERR(BR-01)');
   });
 
@@ -57,8 +57,8 @@ describe('database - get item - helper function', () => {
       Key: {
         id: '1234567890-1'
       }
-    }
+    };
 
-    await expect(async () => getItem(params)).rejects.toThrow(`Oops! seems like we're having difficulties.Please try again later. ERR(DB-02)`);
+    await expect(async () => getItem(params)).rejects.toThrow('Oops! seems like we\'re having difficulties.Please try again later. ERR(DB-02)');
   });
 });

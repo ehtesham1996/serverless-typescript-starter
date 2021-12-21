@@ -8,8 +8,8 @@ export async function updateItem(
   try {
     return await docClient().update(params).promise();
   } catch (error) {
-    if (error.code && error.code === "ConditionalCheckFailedException") {
-      throw new NotFoundError("Invalid id specified to be updated");
+    if (error.code && error.code === 'ConditionalCheckFailedException') {
+      throw new NotFoundError('Invalid id specified to be updated');
     }
     throw new DatabaseError(error);
   }

@@ -14,59 +14,59 @@ describe('database - scan item - helper function', () => {
   it('success - 200', async () => {
     AWS.mock('DynamoDB.DocumentClient', 'scan', async (params: any) => {
       // eslint-disable-next-line jest/prefer-strict-equal
-      expect(params).toEqual({ "TableName": "users", "FilterExpression": "#user_status = :user_status_val", "ExpressionAttributeNames": { "#user_status": "user_status" }, "ExpressionAttributeValues": { ":user_status_val": "somestatus" } });
+      expect(params).toEqual({ TableName: 'users', FilterExpression: '#user_status = :user_status_val', ExpressionAttributeNames: { '#user_status': 'user_status' }, ExpressionAttributeValues: { ':user_status_val': 'somestatus' } });
       return {
-        "ConsumedCapacity": {
-          "CapacityUnits": 0.5,
-          "TableName": "Reply"
+        ConsumedCapacity: {
+          CapacityUnits: 0.5,
+          TableName: 'Reply'
         },
-        "Count": 1,
-        "Items": [{ name: 'JOHN' }],
-        "ScannedCount": 1
-      }
+        Count: 1,
+        Items: [{ name: 'JOHN' }],
+        ScannedCount: 1
+      };
 
     });
 
     const params = {
-      TableName: "users",
-      FilterExpression: "#user_status = :user_status_val",
+      TableName: 'users',
+      FilterExpression: '#user_status = :user_status_val',
       ExpressionAttributeNames: {
-        "#user_status": "user_status"
+        '#user_status': 'user_status'
       },
-      ExpressionAttributeValues: { ":user_status_val": 'somestatus' }
+      ExpressionAttributeValues: { ':user_status_val': 'somestatus' }
     };
 
     // eslint-disable-next-line jest/prefer-strict-equal
-    expect(await scanItem(params)).toEqual({ "Items": [{ "name": "JOHN" }] });
+    expect(await scanItem(params)).toEqual({ Items: [{ name: 'JOHN' }] });
   });
 
   it('success - 200 - with limit', async () => {
     AWS.mock('DynamoDB.DocumentClient', 'scan', async (params: any) => {
       // eslint-disable-next-line jest/prefer-strict-equal
-      expect(params).toEqual({ "TableName": "users", "FilterExpression": "#user_status = :user_status_val", "ExpressionAttributeNames": { "#user_status": "user_status" }, "ExpressionAttributeValues": { ":user_status_val": "somestatus" } });
+      expect(params).toEqual({ TableName: 'users', FilterExpression: '#user_status = :user_status_val', ExpressionAttributeNames: { '#user_status': 'user_status' }, ExpressionAttributeValues: { ':user_status_val': 'somestatus' } });
       return {
-        "ConsumedCapacity": {
-          "CapacityUnits": 0.5,
-          "TableName": "Reply"
+        ConsumedCapacity: {
+          CapacityUnits: 0.5,
+          TableName: 'Reply'
         },
-        "Count": 2,
-        "Items": [{ name: 'JOHN' }, { name: 'SMITH' }],
-        "ScannedCount": 2
-      }
+        Count: 2,
+        Items: [{ name: 'JOHN' }, { name: 'SMITH' }],
+        ScannedCount: 2
+      };
 
     });
 
     const params = {
-      TableName: "users",
-      FilterExpression: "#user_status = :user_status_val",
+      TableName: 'users',
+      FilterExpression: '#user_status = :user_status_val',
       ExpressionAttributeNames: {
-        "#user_status": "user_status"
+        '#user_status': 'user_status'
       },
-      ExpressionAttributeValues: { ":user_status_val": 'somestatus' }
+      ExpressionAttributeValues: { ':user_status_val': 'somestatus' }
     };
 
     // eslint-disable-next-line jest/prefer-strict-equal
-    expect(await scanItem(params, 1)).toEqual({ "Items": [{ "name": "JOHN" }, { name: 'SMITH' }] });
+    expect(await scanItem(params, 1)).toEqual({ Items: [{ name: 'JOHN' }, { name: 'SMITH' }] });
   });
 
   it('error - 500', async () => {
@@ -79,9 +79,9 @@ describe('database - scan item - helper function', () => {
       Key: {
         id: '1234567890-1'
       }
-    }
+    };
 
-    await expect(async () => scanItem(params)).rejects.toThrow(`Oops! seems like we're having difficulties.Please try again later. ERR(DB-02)`);
+    await expect(async () => scanItem(params)).rejects.toThrow('Oops! seems like we\'re having difficulties.Please try again later. ERR(DB-02)');
   });
 });
 

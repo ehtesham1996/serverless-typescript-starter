@@ -24,7 +24,7 @@ describe('database - update item - helper function', () => {
       TableName: 'TableName',
       Key: { pk: '12345', sk: 'details' }, UpdateExpression: 'set #status = :status', ExpressionAttributeNames: { '#status': 'status' },
       ExpressionAttributeValues: { ':status': true }, ReturnValues: 'ALL_NEW'
-    }
+    };
 
     await updateItem(params);
   });
@@ -41,9 +41,9 @@ describe('database - update item - helper function', () => {
         id: '1234567890-1',
         hello: 'world'
       }
-    }
+    };
 
-    await expect(async () => updateItem(params)).rejects.toThrow(`Invalid id specified to be updated ERR(NF-01)`);
+    await expect(async () => updateItem(params)).rejects.toThrow('Invalid id specified to be updated ERR(NF-01)');
   });
 
   it('error - 500', async () => {
@@ -55,8 +55,8 @@ describe('database - update item - helper function', () => {
       TableName: 'TableName',
       Key: { pk: '12345', sk: 'details' }, UpdateExpression: 'set #status = :status', ExpressionAttributeNames: { '#status': 'status' },
       ExpressionAttributeValues: { ':status': true }, ReturnValues: 'ALL_NEW'
-    }
-    await expect(async () => updateItem(params)).rejects.toThrow(`Oops! seems like we're having difficulties.Please try again later. ERR(DB-02)`);
+    };
+    await expect(async () => updateItem(params)).rejects.toThrow('Oops! seems like we\'re having difficulties.Please try again later. ERR(DB-02)');
   });
 
 

@@ -37,7 +37,7 @@ describe('database - scan item - helper function', () => {
     };
 
     // eslint-disable-next-line jest/prefer-strict-equal
-    expect(await scanItem(params)).toEqual({ Items: [{ name: 'JOHN' }] });
+    await expect(scanItem(params)).resolves.toEqual({ Items: [{ name: 'JOHN' }] });
   });
 
   it('success - 200 - with limit', async () => {
@@ -66,7 +66,7 @@ describe('database - scan item - helper function', () => {
     };
 
     // eslint-disable-next-line jest/prefer-strict-equal
-    expect(await scanItem(params, 1)).toEqual({ Items: [{ name: 'JOHN' }, { name: 'SMITH' }] });
+    await expect(scanItem(params, 1)).resolves.toEqual({ Items: [{ name: 'JOHN' }, { name: 'SMITH' }] });
   });
 
   it('error - 500', async () => {

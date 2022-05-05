@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { APIGatewayProxyResult } from 'aws-lambda';
 import { CustomResponse } from './types/custom-response.type';
 

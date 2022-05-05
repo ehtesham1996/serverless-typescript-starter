@@ -4,6 +4,8 @@ jspm_packages
 
 # Serverless directories
 .serverless
+.esbuild
+.DS_STORE
 
 # Webpack directories
 .webpack

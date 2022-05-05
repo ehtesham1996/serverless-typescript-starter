@@ -36,7 +36,7 @@ describe('database - query item - helper function', () => {
       ExpressionAttributeValues: { ':pk': '123e4567-e89b' }
     };
 
-    expect(await queryItem(params)).toStrictEqual({
+    await expect(queryItem(params)).resolves.toStrictEqual({
       Items: [{ pk: '123e4567-e89b', title: 'Title' }],
       LastEvaluatedKey: undefined
     });
@@ -71,7 +71,7 @@ describe('database - query item - helper function', () => {
       ExpressionAttributeValues: { ':pk': '123e4567-e89b' }
     };
 
-    expect(await queryItem(params, 1)).toStrictEqual({
+    await expect(queryItem(params, 1)).resolves.toStrictEqual({
       Items: [
         { pk: '123e4567-e89b', title: 'Title' },
         { pk: '123e4567-e89b1', title: 'Title1' }

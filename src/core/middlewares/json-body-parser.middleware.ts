@@ -9,7 +9,7 @@ const defaults = {
   reviver: undefined
 };
 
-export const HttpJsonBodyParserMiddleware: middy.Middleware<any, any> = (opts: {}) => {
+export const HttpJsonBodyParserMiddleware: middy.Middleware<any, any> = (opts = {}) => {
   const options = { ...defaults, ...opts };
   const middlewareObject: middy.MiddlewareObject<any, any> = {
     before: async (handler: MiddyHandlerLambda): Promise<any> => {

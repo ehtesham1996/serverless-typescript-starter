@@ -1,4 +1,4 @@
-import { ObjectSchema } from '@hapi/joi';
+import { ObjectSchema } from 'joi';
 import { BadRequestError } from '../errors';
 
 /**

@@ -1,5 +1,8 @@
+/* eslint-disable import/no-import-module-exports */
 /* eslint-disable no-template-curly-in-string */
 import type { AWS } from '@serverless/typescript';
+import { esbuild } from './serverless/configs/esbuild.custom';
+import { prune } from './serverless/configs/prune.custom';
 import { functions } from './serverless/functions';
 import { resources } from './serverless/resources';
 
@@ -8,34 +11,28 @@ const stage = "${opt:stage, 'dev'}";
 
 export const service: AWS = {
   service: 'service-name',
+  frameworkVersion: '3',
   package: {
-    individually: true
+    individually: true,
+    patterns: [
+      '!**/*.test.ts'
+    ]
   },
   custom: {
-    webpack: {
-      webpackConfig: './webpack.config.js',
-      includeModules: {
-        forceExclude: [
-          'aws-sdk'
-        ]
-      },
-      excludeFiles: '**/*.test.ts'
-    },
-    prune: {
-      automatic: true,
-      number: 3
-    }
+    esbuild,
+    prune
   },
   plugins: [
-    'serverless-webpack',
+    'serverless-esbuild',
     'serverless-prune-plugin',
     'serverless-dotenv-plugin',
     'serverless-deployment-bucket',
+    'serverless-analyze-bundle-plugin',
     'serverless-offline'
   ],
   provider: {
     name: 'aws',
-    runtime: 'nodejs12.x',
+    runtime: 'nodejs14.x',
     stage,
     region,
     memorySize: 256,
@@ -51,7 +48,8 @@ export const service: AWS = {
     environment: {
       ENV: '${self:provider.stage}',
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
-      REGION: '${self:provider.region}'
+      REGION: '${self:provider.region}',
+      NODE_OPTIONS: '--enable-source-maps'
     }
   },
   functions,

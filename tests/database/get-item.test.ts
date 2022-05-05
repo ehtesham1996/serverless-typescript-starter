@@ -28,7 +28,7 @@ describe('database - get item - helper function', () => {
         id: '1234567890-1'
       }
     };
-    expect(await getItem(params)).toStrictEqual({ id: '123456789-0', field: 'value1' });
+    await expect(getItem(params)).resolves.toStrictEqual({ id: '123456789-0', field: 'value1' });
   });
 
   it('throw error when invalied item specified', async () => {

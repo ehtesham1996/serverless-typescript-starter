@@ -1,5 +1,5 @@
 /* eslint-disable no-param-reassign */
-import { ObjectSchema } from '@hapi/joi';
+import { ObjectSchema } from 'joi';
 import { MiddyHandlerLambda } from '../types/middy-handler.type';
 import { validate } from '../utils';
 
